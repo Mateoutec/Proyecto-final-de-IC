@@ -1,0 +1,27 @@
+# Secretos y datos biométricos: nunca al repositorio
+.env
+data/
+models/
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# Sistema
+.DS_Store
+Thumbs.db
+frontend/e2e/fixtures/
+
+# Capturas de las pruebas E2E (contienen el rostro de muestra de InsightFace)
+frontend/e2e/screenshots/
+# Skills de terceros usadas durante el desarrollo
+.claude/

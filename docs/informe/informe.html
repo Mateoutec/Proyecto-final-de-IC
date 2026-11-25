@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Asistencia Biométrica · Proyecto final · Introducción a Cognitive Computing</title>
+<style>
+@font-face{font-family:"Fira Sans";src:url(fonts/fira-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-style:normal}
+@font-face{font-family:"Fira Sans";src:url(fonts/fira-sans-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Fira Sans";src:url(fonts/fira-sans-latin-500-normal.woff2) format("woff2");font-weight:500}
+@font-face{font-family:"Fira Sans";src:url(fonts/fira-sans-latin-600-normal.woff2) format("woff2");font-weight:600}
+@font-face{font-family:"Fira Sans";src:url(fonts/fira-sans-latin-700-normal.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Fira Sans Condensed";src:url(fonts/fira-sans-condensed-latin-500-normal.woff2) format("woff2");font-weight:500}
+@font-face{font-family:"Fira Sans Condensed";src:url(fonts/fira-sans-condensed-latin-600-normal.woff2) format("woff2");font-weight:600}
+@font-face{font-family:"Fira Sans Condensed";src:url(fonts/fira-sans-condensed-latin-700-normal.woff2) format("woff2");font-weight:700}
+@font-face{font-family:"Fira Code";src:url(fonts/fira-code-latin-400-normal.woff2) format("woff2");font-weight:400}
+
+:root{
+  --ink:#0f1e33; --muted:#4f5e73; --faint:#7a8699; --line:#dfe5ee; --soft:#f4f6f9;
+  --navy:#16325c; --navy-deep:#0c1a30;
+  --green:#047857; --green-soft:#e7f6ef;
+  --amber:#b45309; --amber-soft:#fdf3e7;
+  --blue:#1d4ed8; --blue-soft:#eaf1ff;
+}
+@page{
+  size:A4; margin:16mm 17mm 17mm 17mm;
+  @bottom-left{content:"Asistencia Biométrica · Introducción a Cognitive Computing (EL3302)";font-family:"Fira Sans";font-size:7.5pt;color:#8a96a8}
+  @bottom-right{content:counter(page) " / " counter(pages);font-family:"Fira Sans";font-size:7.5pt;color:#8a96a8}
+}
+@page :first{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:"Fira Sans",sans-serif;font-size:9.3pt;line-height:1.48;color:var(--ink);background:#fff;font-variant-numeric:tabular-nums}
+p{margin:0 0 5pt}
+strong{font-weight:600}
+code{font-family:"Fira Code",monospace;font-size:.86em;background:var(--soft);padding:0 3px;border-radius:3px}
+ul,ol{margin:0 0 5pt;padding-left:15pt}
+li{margin:0 0 2pt}
+
+/* ---------- Portada ---------- */
+.cover{width:210mm;height:297mm;position:relative;overflow:hidden;break-after:page;background:#fff}
+.cover .band{position:absolute;inset:0 0 auto 0;height:152mm;background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 100%);color:#fff;padding:22mm 20mm 0}
+.cover .course{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;color:#a9bad3;font-weight:500}
+.cover h1{font-family:"Fira Sans Condensed";font-weight:700;font-size:40pt;line-height:1.02;margin:10mm 0 4mm;letter-spacing:-.01em}
+.cover .sub{font-size:13pt;line-height:1.4;color:#d7e0ee;max-width:150mm;margin:0}
+.cover .pills{display:flex;gap:3mm;margin-top:8mm;flex-wrap:wrap}
+.cover .pill{display:inline-flex;align-items:center;gap:2mm;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);border-radius:99px;padding:1.6mm 4mm;font-size:9pt;color:#eef3fa}
+.cover .pill i{width:2.2mm;height:2.2mm;border-radius:50%;display:inline-block}
+.cover .shot{position:absolute;left:17mm;right:17mm;top:108mm;border-radius:4mm;overflow:hidden;box-shadow:0 6mm 14mm rgba(12,26,48,.28);border:1px solid #c9d3e1}
+.cover .shot img{display:block;width:100%}
+.cover .meta{position:absolute;left:20mm;right:20mm;bottom:24mm;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:6mm;border-top:1px solid var(--line);padding-top:6mm}
+.cover .meta h4{margin:0 0 1.5mm;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.cover .meta p{margin:0;font-size:10.5pt;line-height:1.45}
+.cover .repo{position:absolute;left:20mm;right:20mm;bottom:14mm;font-size:8.5pt;color:var(--muted)}
+.cover .repo span{font-family:"Fira Code";color:var(--navy)}
+
+/* ---------- Cuerpo ---------- */
+h2{font-family:"Fira Sans Condensed";font-weight:600;font-size:14.5pt;color:var(--navy);margin:11pt 0 5pt;display:flex;align-items:center;gap:7pt;break-after:avoid}
+h2 .n{display:inline-grid;place-items:center;min-width:17pt;height:17pt;border-radius:5pt;background:var(--navy);color:#fff;font-size:9.5pt;font-weight:600;padding:0 4pt}
+h3{font-family:"Fira Sans Condensed";font-weight:600;font-size:10.8pt;margin:7pt 0 3pt;color:var(--ink);break-after:avoid}
+.lead{font-size:10pt;color:#24344d}
+.muted{color:var(--muted)}
+.small{font-size:8.3pt}
+.avoid{break-inside:avoid}
+.page-break{break-before:page}
+
+table{width:100%;border-collapse:collapse;margin:3pt 0 7pt;font-size:8.5pt;line-height:1.4}
+th{background:var(--soft);text-align:left;font-weight:600;color:#24344d;padding:4pt 6pt;border-bottom:1px solid var(--line)}
+td{padding:4pt 6pt;border-bottom:1px solid var(--line);vertical-align:top}
+tr{break-inside:avoid}
+td.k{font-weight:600;white-space:nowrap;color:#24344d}
+td.kw{font-weight:600;color:#24344d}
+.nw{white-space:nowrap}
+.tag{display:inline-block;font-size:7.4pt;font-weight:600;padding:0 5pt;border-radius:3pt;line-height:1.6;white-space:nowrap}
+.tag.u{background:var(--green-soft);color:var(--green)}
+.tag.a{background:var(--blue-soft);color:var(--blue)}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.v2{background:var(--amber-soft);color:var(--amber)}
+
+.summary{border:1px solid var(--line);border-left:3pt solid var(--green);border-radius:4pt;padding:7pt 9pt;background:#fbfcfd;margin:0 0 6pt}
+.summary p:last-child{margin:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8pt}
+.card{border:1px solid var(--line);border-radius:5pt;padding:7pt 9pt;break-inside:avoid}
+.card h3{margin-top:0;display:flex;align-items:center;gap:5pt}
+.card ul{margin:0;padding-left:13pt}
+.qa{display:grid;grid-template-columns:31mm 1fr;border-top:1px solid var(--line);margin:2pt 0 6pt}
+.qa>div{padding:4pt 0;border-bottom:1px solid var(--line)}
+.qa .q{font-weight:600;color:var(--navy);padding-right:6pt;font-size:8.8pt}
+.steps{counter-reset:s;list-style:none;padding:0;margin:3pt 0 6pt}
+.steps li{counter-increment:s;position:relative;padding-left:19pt;margin-bottom:3.2pt}
+.steps li::before{content:counter(s);position:absolute;left:0;top:.5pt;width:13pt;height:13pt;border-radius:50%;background:var(--green-soft);color:var(--green);font-size:7.6pt;font-weight:700;display:grid;place-items:center}
+
+figure{margin:6pt 0 8pt;break-inside:avoid}
+figure img{display:block;width:100%;border-radius:3pt;border:1px solid #cfd8e3}
+figcaption{font-size:7.9pt;color:var(--muted);margin-top:3pt;line-height:1.35}
+figcaption b{color:var(--ink);font-weight:600}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:7pt}
+
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:3pt 0;margin:4pt 0 7pt}
+.chain span{background:var(--green-soft);color:#035e44;border:1px solid #b9e2d3;border-radius:4pt;padding:2pt 5pt;font-size:7.9pt;font-weight:500;line-height:1.3}
+.chain span.io{background:var(--soft);color:#24344d;border-color:var(--line)}
+.chain em{font-style:normal;color:var(--faint);padding:0 3pt;font-size:8pt}
+
+.diagram{border:1px solid var(--line);border-radius:5pt;padding:6pt 6pt 3pt;background:#fff}
+.diagram svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:3pt 12pt;margin-top:6pt}
+
+.impact{display:grid;grid-template-columns:repeat(3,1fr);gap:6pt;margin:3pt 0 6pt}
+.impact .card{padding:6pt 8pt}
+.impact .card b{display:block;font-family:"Fira Sans Condensed";font-weight:600;font-size:10pt;color:var(--navy);margin-bottom:1pt}
+.impact .card p{font-size:8.3pt;margin:0;line-height:1.4}
+
+.refs{font-size:8pt;line-height:1.42;padding-left:14pt}
+.refs li{margin-bottom:2.4pt}
+.check{color:var(--green);font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- =================================== PORTADA =================================== -->
+<section class="cover">
+  <div class="band">
+    <div class="course">Introducción a Cognitive Computing · EL3302 · Proyecto final</div>
+    <h1>Asistencia Biométrica</h1>
+    <p class="sub">Kiosco web de entrada y salida con reconocimiento facial, prueba de vida y panel administrativo. Toda la inteligencia artificial corre en la propia laptop.</p>
+    <div class="pills">
+      <span class="pill"><i style="background:#60a5fa"></i>Aplicación web</span>
+      <span class="pill"><i style="background:#f59e0b"></i>Hardware: cámara + lector de huella</span>
+      <span class="pill"><i style="background:#34d399"></i>IA: reconocimiento facial</span>
+    </div>
+  </div>
+  <div class="shot"><img src="img/kiosco-entrada.png" alt="Kiosco del sistema tras registrar una entrada"></div>
+  <div class="meta">
+    <div><h4>Integrantes</h4><p>Mateo Llallire Meza<br>Tomás Laura</p></div>
+    <div><h4>Docente</h4><p>Jaime Farfán Madariaga</p></div>
+    <div><h4>Lugar y fecha</h4><p>Lima, 24 de noviembre de 2026</p></div>
+  </div>
+  <div class="repo">Código fuente: <span>github.com/Mateoutec/Proyecto-final-de-IC</span></div>
+</section>
+
+<!-- =================================== RESUMEN =================================== -->
+<div class="summary">
+  <p class="lead"><strong>Resumen.</strong> Proponemos y presentamos funcionando un sistema de control de asistencia para clases y laboratorios. El estudiante se acerca a un kiosco web, una cámara captura su rostro, un modelo de IA lo identifica y le pide un giro de cabeza para confirmar que es una persona real, y el sistema registra su ENTRADA o SALIDA. El docente gestiona personas, horas y reportes desde un panel web. El procesamiento es local: las imágenes y los datos biométricos no salen del equipo.</p>
+</div>
+
+<table class="avoid">
+  <thead><tr><th style="width:27%">Requisito de los lineamientos</th><th>Cómo lo cumple el proyecto</th><th style="width:9%">Sección</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Perfil Usuario</td><td>Estudiante: se identifica con su rostro, recibe el resultado al instante y consulta su resumen de la semana.</td><td>5</td></tr>
+    <tr><td class="k">Perfil Administrador</td><td>Docente o RR.HH.: personas, enrolamiento, marcaciones, horas, exportaciones, configuración y auditoría.</td><td>5</td></tr>
+    <tr><td class="k">Aplicación web</td><td>Aplicación web en React con dos entradas: kiosco (<code>/</code>) y panel administrativo (<code>/admin</code>). Funciona en pantallas desde 390 px de ancho.</td><td>6</td></tr>
+    <tr><td class="k">Conexión a hardware</td><td>Cámara web (≈5 imágenes/s por HTTP local) y lector de huella AS608 por puerto serie UART como segundo sensor.</td><td>7</td></tr>
+    <tr><td class="k">Inteligencia Artificial</td><td>Detección y reconocimiento facial con redes neuronales (SCRFD + ArcFace), identificación 1:N con consenso y prueba de vida.</td><td>8</td></tr>
+    <tr><td class="k">Arquitectura inicial</td><td>Diagrama de perfiles, aplicación, backend, base de datos, hardware y modelo de IA.</td><td>9</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">1</span>Nombre del proyecto</h2>
+<p><strong>Asistencia Biométrica:</strong> kiosco de asistencia con reconocimiento facial local.</p>
+
+<h2><span class="n">2</span>Integrantes del grupo</h2>
+<p>Mateo Llallire Meza · Tomás Laura</p>
+
+<h2><span class="n">3</span>Problema identificado</h2>
+<div class="qa">
+  <div class="q">¿Qué problema existe?</div>
+  <div>La asistencia se controla pasando lista o con una hoja de firmas. Es un proceso lento, permite la suplantación (responder o firmar por un compañero) y genera registros en papel que luego hay que transcribir para calcular asistencia u horas.</div>
+  <div class="q">¿A quién afecta?</div>
+  <div>A los docentes y coordinadores, que pierden tiempo de clase y no cuentan con datos confiables. A los estudiantes, que no pueden consultar su propio registro. En el ámbito laboral, también a las áreas de RR.HH. que deben llevar un registro de entrada y salida.</div>
+  <div class="q">¿Por qué es importante?</div>
+  <div>La asistencia suele ser condición para aprobar un curso y es la base para calcular horas de prácticas o de trabajo. Además, las soluciones biométricas comerciales suelen enviar rostros o huellas a servidores externos, y en el Perú los datos biométricos son datos sensibles protegidos por la Ley <span class="nw">N.° 29733</span>.</div>
+  <div class="q">¿Qué ocurre si no se soluciona?</div>
+  <div>Se siguen perdiendo minutos en cada sesión (estimamos 3 a 5 minutos para 20 estudiantes, a razón de 10 a 15 s por nombre). La suplantación continúa sin evidencia, y los reportes se arman a mano, con errores y sin trazabilidad.</div>
+</div>
+
+<h2><span class="n">4</span>Propuesta de solución</h2>
+<p><strong>¿Qué proponemos?</strong> Un kiosco web en una laptop con cámara. El estudiante solo mira a la cámara: el sistema lo reconoce, verifica que es una persona real y registra su marcación. El docente administra todo desde un panel web en el mismo equipo.</p>
+<p><strong>¿Cómo funciona?</strong></p>
+<ol class="steps">
+  <li><strong>Enrolamiento.</strong> El administrador registra a cada estudiante con su consentimiento y 5 fotos guiadas. El sistema guarda vectores faciales cifrados, no contraseñas.</li>
+  <li><strong>Detección.</strong> El kiosco envía unas 5 imágenes por segundo al backend local, que comprueba el tamaño del rostro, la nitidez, la luz y la pose, y guía al usuario («acércate», «falta luz»).</li>
+  <li><strong>Identificación.</strong> La IA compara el rostro con todos los enrolados (1:N) y solo acepta si 3 de 5 imágenes coinciden con la misma persona.</li>
+  <li><strong>Prueba de vida.</strong> Pide girar la cabeza a la izquierda o a la derecha (dirección aleatoria, 7 s) y verifica que la identidad no cambie durante el giro.</li>
+  <li><strong>Registro.</strong> Decide si es ENTRADA o SALIDA, aplica un anti-rebote de 120 s y guarda la mejor foto como evidencia. Luego muestra al estudiante su resultado y el resumen de su semana.</li>
+</ol>
+<p><strong>¿Qué valor aporta?</strong> Marcar toma segundos y no requiere tarjetas ni contraseñas. El docente obtiene la asistencia y las horas listas para Excel, y cada marcación queda respaldada con foto, similitud y auditoría.</p>
+<p><strong>¿Qué lo diferencia de una solución tradicional?</strong></p>
+<ul>
+  <li>Frente a la lista o la hoja de firmas, nadie puede marcar por otro y los reportes se generan solos.</li>
+  <li>Frente a tarjetas RFID o códigos QR, la credencial es el propio rostro: no se presta ni se olvida.</li>
+  <li>Frente a los relojes biométricos en la nube, el procesamiento es 100 % local y no hay costo de suscripción. Además, incluye una prueba de vida que rechaza fotos estáticas.</li>
+</ul>
+
+<h2><span class="n">5</span>Perfiles del sistema</h2>
+<div class="grid2">
+  <div class="card">
+    <h3><span class="tag u">USUARIO</span> Estudiante en el kiosco</h3>
+    <ul>
+      <li>Identificarse sin contraseña, mirando a la cámara, o con su código más el rostro si el reconocimiento 1:N no basta.</li>
+      <li>Superar la prueba de vida siguiendo la flecha en pantalla.</li>
+      <li>Recibir el resultado al instante: ENTRADA o SALIDA, hora, foto y horas de la jornada. Si ya marcó, ve el aviso «ya registraste».</li>
+      <li>Consultar <strong>«Tu semana»</strong>: días asistidos, horas acumuladas y sus últimas 4 marcaciones. Solo la ve tras identificarse.</li>
+      <li>Dar su consentimiento informado y pedir que se borren sus datos biométricos.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span class="tag a">ADMINISTRADOR</span> Docente o RR.HH. en el panel</h3>
+    <ul>
+      <li>Iniciar sesión con contraseña (sesión protegida con cookie httpOnly).</li>
+      <li>Gestionar personas y áreas, enrolar rostros, activar o desactivar personas y eliminar su biometría.</li>
+      <li>Supervisar lo que captura la cámara: cada marcación con su foto, similitud, umbral y resultado de la prueba de vida.</li>
+      <li>Revisar reportes (resumen del día, jornadas, totales por persona) y exportarlos a CSV, Excel o ZIP con fotos.</li>
+      <li>Configurar los umbrales de IA, la prueba de vida, el anti-rebote y el motor activo, y calibrar el umbral.</li>
+      <li>Atender incidencias: anular marcaciones o agregar una manual con motivo obligatorio. Todo queda en la auditoría.</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="n">6</span>Aplicación web</h2>
+<p><strong>Tipo: aplicación web</strong> de una sola página (React) que sirve el propio backend en <code>http://localhost:8000</code>. Funciona sin internet y se adapta a la pantalla (verificado sin desplazamiento horizontal a 390 px). Tiene dos entradas, una por perfil: el <strong>kiosco</strong> (<code>/</code>), para usuarios, y el <strong>panel</strong> (<code>/admin</code>), para el administrador.</p>
+<table>
+  <thead><tr><th style="width:24%">Pantalla o módulo</th><th style="width:11%">Perfil</th><th>Qué permite</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Kiosco: cámara y guía</td><td><span class="tag u">Usuario</span></td><td>Vista espejada con óvalo guía, reloj grande y mensajes de calidad; selector de cámara.</td></tr>
+    <tr><td class="k">Kiosco: prueba de vida</td><td><span class="tag u">Usuario</span></td><td>Flecha de dirección, barra de progreso del giro y tiempo restante.</td></tr>
+    <tr><td class="k">Kiosco: resultado</td><td><span class="tag u">Usuario</span></td><td>Foto, ENTRADA o SALIDA, hora, horas de la jornada y el resumen «Tu semana». Si se activa, suena una confirmación.</td></tr>
+    <tr><td class="k">Kiosco: ingresar código</td><td><span class="tag u">Usuario</span></td><td>Modo de respaldo: código de estudiante más verificación facial 1:1.</td></tr>
+    <tr><td class="k">Inicio de sesión</td><td><span class="tag a">Admin</span></td><td>Acceso con contraseña al panel.</td></tr>
+    <tr><td class="k">Resumen del día</td><td><span class="tag a">Admin</span></td><td>Presentes, entradas, salidas, jornadas incompletas, desglose por área y últimas marcaciones.</td></tr>
+    <tr><td class="k">Personas y ficha</td><td><span class="tag a">Admin</span></td><td>Altas y ediciones; enrolamiento guiado con cámara o con fotos subidas; consentimiento; borrado de biometría.</td></tr>
+    <tr><td class="k">Marcaciones</td><td><span class="tag a">Admin</span></td><td>Filtros por fecha, área, persona, tipo y método; foto ampliable; anulación o marcación manual con motivo.</td></tr>
+    <tr><td class="k">Horas</td><td><span class="tag a">Admin</span></td><td>Jornadas ENTRADA→SALIDA, incluidos los turnos que cruzan la medianoche, y totales por persona.</td></tr>
+    <tr><td class="k">Exportar</td><td><span class="tag a">Admin</span></td><td>Jornadas, marcaciones y resumen por persona en CSV y Excel, más un ZIP con las fotos.</td></tr>
+    <tr><td class="k">Configuración</td><td><span class="tag a">Admin</span></td><td>Umbrales de IA, prueba de vida, anti-rebote, motor facial, estado de la huella y calibración.</td></tr>
+    <tr><td class="k">Auditoría</td><td><span class="tag a">Admin</span></td><td>Historial de todas las acciones administrativas.</td></tr>
+  </tbody>
+</table>
+<figure>
+  <div class="figrow">
+    <img src="img/kiosco-entrada.png" alt="Kiosco tras registrar una entrada">
+    <img src="img/panel-resumen.png" alt="Panel administrativo: resumen del día" style="object-fit:cover;object-position:top;aspect-ratio:1440/900">
+  </div>
+  <figcaption><b>Figura 1.</b> Izquierda: kiosco (perfil Usuario) tras registrar una ENTRADA, con el resumen «Tu semana». Derecha: panel (perfil Administrador), resumen del día con datos de demostración. Las capturas salen de las pruebas automatizadas; el rostro de prueba está pixelado.</figcaption>
+</figure>
+
+<h2><span class="n">7</span>Hardware a utilizar</h2>
+<table>
+  <thead><tr><th style="width:17%">Dispositivo</th><th style="width:20%">Función</th><th style="width:22%">Datos que captura</th><th style="width:24%">Conexión con la aplicación</th><th>Frecuencia</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="kw">Cámara web<br><span class="tag ok">operativa</span></td>
+      <td>Sensor principal: captura el rostro para identificar y para la prueba de vida.</td>
+      <td>Imágenes JPEG de 640 px de ancho. Por cada marcación solo se guarda la mejor captura frontal, como evidencia.</td>
+      <td>USB o integrada. El navegador abre la cámara (<code>getUserMedia</code>) y envía cada imagen por HTTP POST al backend local (<code>127.0.0.1:8000</code>).</td>
+      <td>≈5 imágenes/s (una cada 200 ms) mientras el kiosco está abierto.</td>
+    </tr>
+    <tr>
+      <td class="kw">Lector de huella AS608 + adaptador USB-TTL (CP2102/CH340)<br><span class="tag v2">integración v2</span></td>
+      <td>Segundo sensor biométrico: acelera la marcación o confirma la identidad junto con el rostro.</td>
+      <td>ID de la huella encontrada (búsqueda 1:N dentro del sensor) y su puntaje de coincidencia.</td>
+      <td>Puerto serie UART a 57 600 baudios (TX y RX cruzados), leído por el backend con <code>pyserial</code>. El kiosco consulta el resultado por <em>long-polling</em>.</td>
+      <td>Bajo demanda: al apoyar el dedo (espera máx. 8 s).</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Integración multimodal.</strong> Si la huella coincide con puntaje alto, se marca por huella. Con puntaje medio, esa persona pasa a ser candidata y se verifica su rostro 1:1 más la prueba de vida. Sin coincidencia, se usa el rostro 1:N. Cada marcación guarda el método (ROSTRO, HUELLA, HUELLA+ROSTRO, CÓDIGO+ROSTRO o MANUAL) y sus puntajes. <span class="muted">Estado actual: la cámara está integrada y probada. El adaptador del AS608 y la lógica multimodal ya están implementados y se verificaron con un simulador; falta probarlos con el sensor físico.</span></p>
+
+<h2><span class="n">8</span>Uso de Inteligencia Artificial</h2>
+<p>La IA es el núcleo del sistema: sin ella no hay identificación. Es <strong>visión por computadora con aprendizaje profundo</strong> y corre en CPU con ONNX Runtime, sin GPU, sin internet y sin APIs pagadas.</p>
+<div class="chain">
+  <span class="io">Imagen 640 px</span><em>→</em><span>Control de calidad</span><em>→</em><span>Detección SCRFD + 5 puntos faciales</span><em>→</em><span>Alineación 112×112</span><em>→</em><span>ArcFace: vector de 512 dimensiones</span><em>→</em><span>Similitud coseno 1:N</span><em>→</em><span>Consenso 3 de 5</span><em>→</em><span>Prueba de vida (giro)</span><em>→</em><span class="io">Marcación</span>
+</div>
+<table>
+  <tbody>
+    <tr><td class="k" style="width:20%">Tipo de IA</td><td>Redes neuronales convolucionales preentrenadas: <strong>SCRFD</strong> para detectar el rostro y sus 5 puntos clave, y <strong>ArcFace</strong> (ResNet-50 entrenada con WebFace600K) para convertir el rostro en un vector de identidad. Motor de respaldo: OpenCV <strong>YuNet + SFace</strong>. La prueba de vida activa usa geometría de los puntos faciales (posición de la nariz respecto de los ojos).</td></tr>
+    <tr><td class="k">Datos que procesa</td><td>Las imágenes de la cámara y 5 fotos de enrolamiento por persona. Cada rostro se alinea y se convierte en un vector de 512 números (normalizado), que se guarda cifrado con Fernet (AES-128 + HMAC).</td></tr>
+    <tr><td class="k">Cómo decide</td><td>Compara el vector contra todas las plantillas (1:N) y acepta si (1) la similitud supera el umbral (0,45 con ArcFace; 0,363 con SFace), (2) el mejor candidato aventaja al segundo en al menos 0,06 y (3) la misma identidad gana en 3 de 5 imágenes. Luego lanza el reto de giro aleatorio, con 7 s de límite y verificación de identidad durante el giro.</td></tr>
+    <tr><td class="k">Resultado esperado</td><td>La identidad del estudiante (o «no reconocido»), el tipo de marcación, la similitud real junto al umbral usado y el resultado de la prueba de vida. El sistema no muestra porcentajes inventados.</td></tr>
+    <tr><td class="k">Beneficio</td><td><strong>Usuario:</strong> marca en segundos y sin credenciales. <strong>Administrador:</strong> evita la suplantación, cuenta con evidencia auditable y puede <strong>calibrar</strong> el umbral, porque el sistema estima las tasas FAR/FRR a partir de pares genuinos e impostores y sugiere un valor.</td></tr>
+  </tbody>
+</table>
+<figure>
+  <div class="figrow">
+    <img src="img/kiosco-reto-vida.png" alt="Reto de prueba de vida en el kiosco">
+    <img src="img/panel-configuracion.png" alt="Configuración de umbrales y prueba de vida" style="object-fit:cover;object-position:top;aspect-ratio:1440/900">
+  </div>
+  <figcaption><b>Figura 2.</b> Izquierda: el reto de prueba de vida pide un giro de cabeza aleatorio; una foto estática no lo supera (verificado en las pruebas end-to-end). Derecha: el administrador ajusta los umbrales de similitud, el consenso y la prueba de vida.</figcaption>
+</figure>
+
+<h2 class="page-break"><span class="n">9</span>Arquitectura inicial de la solución</h2>
+<div class="diagram avoid">
+<svg viewBox="0 0 760 532" xmlns="http://www.w3.org/2000/svg" font-family="Fira Sans, sans-serif" role="img" aria-label="Diagrama de arquitectura">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <!-- etiquetas de capas -->
+  <g font-size="9.5" font-weight="600" fill="#7a8699" letter-spacing="0.6">
+    <text x="12" y="49">PERFILES</text>
+    <text x="12" y="138">HARDWARE</text>
+    <text x="12" y="222">APLICACIÓN</text><text x="12" y="234">WEB</text>
+    <text x="12" y="337">BACKEND</text><text x="12" y="349">Y API</text>
+    <text x="12" y="452">IA Y DATOS</text>
+  </g>
+  <!-- límite del equipo local -->
+  <rect x="108" y="81" width="636" height="437" rx="14" fill="none" stroke="#9aa8bb" stroke-dasharray="6 5"/>
+  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Laptop del aula · servidor solo en 127.0.0.1 · sin nube</text>
+
+  <!-- perfiles -->
+  <rect x="125" y="18" width="293" height="54" rx="10" fill="#0f1e33"/>
+  <text x="271" y="41" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">Usuario</text>
+  <text x="271" y="59" text-anchor="middle" font-size="10" fill="#c9d3e1">estudiante que marca en el kiosco</text>
+  <rect x="431" y="18" width="293" height="54" rx="10" fill="#16325c"/>
+  <text x="577" y="41" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">Administrador</text>
+  <text x="577" y="59" text-anchor="middle" font-size="10" fill="#c9d3e1">docente / RR.HH. en el panel</text>
+
+  <!-- hardware -->
+  <rect x="125" y="104" width="140" height="60" rx="9" fill="#fdf3e7" stroke="#b45309" stroke-width="1.3"/>
+  <text x="195" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#7c3a06">Cámara web</text>
+  <text x="195" y="147" text-anchor="middle" font-size="9.5" fill="#8a5a2b">USB o integrada</text>
+  <rect x="278" y="104" width="140" height="60" rx="9" fill="#fffaf3" stroke="#b45309" stroke-width="1.3" stroke-dasharray="5 3"/>
+  <text x="348" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#7c3a06">Lector de huella</text>
+  <text x="348" y="147" text-anchor="middle" font-size="9.5" fill="#8a5a2b">AS608 · opcional (v2)</text>
+
+  <!-- aplicación web -->
+  <rect x="125" y="196" width="140" height="60" rx="9" fill="#eaf1ff" stroke="#1d4ed8" stroke-width="1.3"/>
+  <text x="195" y="221" text-anchor="middle" font-size="12" font-weight="600" fill="#1e3a8a">Kiosco  /</text>
+  <text x="195" y="239" text-anchor="middle" font-size="9.5" fill="#3b5aa8">React · navegador</text>
+  <rect x="431" y="196" width="293" height="60" rx="9" fill="#eaf1ff" stroke="#1d4ed8" stroke-width="1.3"/>
+  <text x="577" y="221" text-anchor="middle" font-size="12" font-weight="600" fill="#1e3a8a">Panel administrativo  /admin</text>
+  <text x="577" y="239" text-anchor="middle" font-size="9.5" fill="#3b5aa8">8 módulos · sesión con cookie httpOnly</text>
+
+  <!-- backend -->
+  <rect x="116" y="282" width="618" height="104" rx="12" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="430" y="299" font-size="10" font-weight="600" fill="#334155">Backend · FastAPI (Python 3.11)</text>
+  <g font-size="11" font-weight="600" fill="#0f1e33" text-anchor="middle">
+    <rect x="125" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="195" y="334">API del kiosco</text>
+    <rect x="278" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="348" y="334">Máquina de estados</text>
+    <rect x="431" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="501" y="334">Servicios</text>
+    <rect x="584" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="654" y="334">API del panel</text>
+  </g>
+  <g font-size="9.2" fill="#4f5e73" text-anchor="middle">
+    <text x="195" y="352">/api/kiosk</text>
+    <text x="348" y="352">calidad → 3/5 → vida</text>
+    <text x="501" y="352">asistencia · horas</text><text x="501" y="364">exportación · auditoría</text>
+    <text x="654" y="352">/api/admin</text>
+  </g>
+
+  <!-- IA y datos -->
+  <rect x="125" y="418" width="293" height="76" rx="10" fill="#e7f6ef" stroke="#047857" stroke-width="1.6"/>
+  <text x="271" y="441" text-anchor="middle" font-size="12" font-weight="600" fill="#035e44">Modelo de IA · ONNX Runtime (CPU)</text>
+  <text x="271" y="459" text-anchor="middle" font-size="9.5" fill="#1f6b52">SCRFD + ArcFace (512-d) · respaldo YuNet + SFace</text>
+  <text x="271" y="475" text-anchor="middle" font-size="9.5" fill="#1f6b52">índice 1:N en memoria (NumPy) · prueba de vida</text>
+  <rect x="431" y="418" width="293" height="76" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.3"/>
+  <text x="577" y="441" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Base de datos SQLite (WAL) + archivos</text>
+  <text x="577" y="459" text-anchor="middle" font-size="9.5" fill="#475569">personas · plantillas faciales cifradas · marcaciones</text>
+  <text x="577" y="475" text-anchor="middle" font-size="9.5" fill="#475569">auditoría · fotos de evidencia en disco</text>
+
+  <!-- flujos -->
+  <g stroke="#475569" stroke-width="1.4" fill="none">
+    <line x1="195" y1="72" x2="195" y2="102" marker-end="url(#ah)"/>
+    <line x1="348" y1="72" x2="348" y2="102" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+    <line x1="195" y1="164" x2="195" y2="194" marker-end="url(#ah)"/>
+    <line x1="348" y1="164" x2="348" y2="306" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+    <line x1="195" y1="258" x2="195" y2="306" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="654" y1="72" x2="654" y2="194" marker-end="url(#ah)"/>
+    <line x1="654" y1="258" x2="654" y2="306" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="265" y1="340" x2="276" y2="340" marker-end="url(#ah)"/>
+    <line x1="418" y1="340" x2="429" y2="340" marker-end="url(#ah)"/>
+    <line x1="584" y1="340" x2="573" y2="340" marker-end="url(#ah)"/>
+    <line x1="348" y1="374" x2="348" y2="416" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="501" y1="374" x2="501" y2="416" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  </g>
+  <g font-size="9.3" fill="#334155">
+    <text x="201" y="97">rostro</text>
+    <text x="354" y="97">dedo</text>
+    <text x="201" y="184">video (getUserMedia)</text>
+    <text x="354" y="222">UART</text><text x="354" y="234">57 600 bps</text>
+    <text x="201" y="275">JPEG 640 px · ~5 fps ↓  estado ↑</text>
+    <text x="660" y="138">contraseña</text>
+    <text x="648" y="275" text-anchor="end">JSON · CSV · XLSX · ZIP</text>
+    <text x="342" y="401" text-anchor="end">imagen → identidad, similitud</text>
+    <text x="507" y="401">SQL · fotos</text>
+  </g>
+</svg>
+</div>
+<div class="legend small">
+  <div><strong>Flujo de marcación (Usuario).</strong> La cámara entrega video al kiosco; el kiosco envía imágenes a la API, y la máquina de estados consulta al modelo de IA (calidad, identidad, consenso y prueba de vida). Luego los servicios registran la marcación en SQLite y devuelven el resultado y «Tu semana» al kiosco.</div>
+  <div><strong>Flujo de gestión (Administrador).</strong> El panel usa la API del panel tras iniciar sesión: altas y enrolamiento (la IA genera las plantillas), consultas, configuración en caliente y exportaciones. El lector de huella (línea punteada) se conecta por puerto serie al backend.</div>
+</div>
+<p class="small muted" style="margin-top:5pt">Decisiones de diseño: la lógica de reconocimiento vive en el backend, como una máquina de estados con pruebas automatizadas, y el navegador solo muestra estados. Los motores de IA y la huella están detrás de interfaces intercambiables. La base SQLite en modo WAL serializa las marcaciones en una transacción (<code>BEGIN IMMEDIATE</code>) para que el anti-rebote no se pueda eludir con dos sesiones a la vez.</p>
+
+<h2><span class="n">10</span>Tecnologías propuestas</h2>
+<table>
+  <thead><tr><th style="width:20%">Capa</th><th>Tecnologías</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Frontend</td><td>React 19, TypeScript, Vite 6, Tailwind CSS 4, React Router, íconos lucide-react y fuentes locales (funciona sin internet).</td></tr>
+    <tr><td class="k">Backend</td><td>Python 3.11, FastAPI, Uvicorn, Pydantic Settings, SQLAlchemy 2; entorno reproducible con <code>uv</code>.</td></tr>
+    <tr><td class="k">Base de datos</td><td>SQLite en modo WAL (archivo local) y fotos de evidencia en disco; exportación con openpyxl (Excel) y CSV UTF-8.</td></tr>
+    <tr><td class="k">Hardware</td><td>Cámara web USB o integrada (también sirve un smartphone como cámara virtual), lector AS608 con adaptador USB-TTL, <code>pyserial</code> y <code>adafruit-circuitpython-fingerprint</code>.</td></tr>
+    <tr><td class="k">IA</td><td>InsightFace <em>buffalo_l</em> (SCRFD-10GF + ArcFace ResNet-50) sobre ONNX Runtime; OpenCV YuNet + SFace (respaldo); NumPy y OpenCV para la calidad de imagen y la prueba de vida.</td></tr>
+    <tr><td class="k">Seguridad</td><td>Cifrado Fernet de las plantillas, servidor solo en loopback, sesión con cookie httpOnly y fotos servidas solo a administradores.</td></tr>
+    <tr><td class="k">Calidad y despliegue</td><td>pytest, Ruff, ESLint y Playwright (pruebas end-to-end con cámara simulada). Despliegue local en una laptop Windows o macOS, sin nube por decisión de privacidad.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">11</span>Alcance inicial del proyecto</h2>
+<div class="grid2">
+  <div class="card">
+    <h3><span class="tag ok">OBLIGATORIAS</span> Primera versión (ya implementadas)</h3>
+    <ul>
+      <li>Enrolamiento facial guiado con consentimiento (5 capturas, control de calidad y aviso de duplicados).</li>
+      <li>Identificación 1:N con consenso de 3 de 5 imágenes y prueba de vida activa.</li>
+      <li>ENTRADA o SALIDA automática, anti-rebote, jornadas (también las que cruzan la medianoche) y horas.</li>
+      <li>Resumen personal «Tu semana» para el usuario en el kiosco.</li>
+      <li>Panel con 8 módulos: resumen del día, personas, marcaciones, horas, exportar, configuración, auditoría e inicio de sesión.</li>
+      <li>Exportación CSV, Excel y ZIP con fotos; anulación y marcación manual con motivo.</li>
+      <li>Respaldo con código + rostro y motor de IA alternativo (SFace) con re-indexado.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span class="tag v2">OPCIONALES</span> Si el tiempo lo permite</h3>
+    <ul>
+      <li>Conectar y calibrar el lector AS608 físico (la lógica y el simulador ya existen).</li>
+      <li>Anti-spoofing pasivo con un modelo ONNX (p. ej., MiniFASNet) contra videos reproducidos.</li>
+      <li>ESP32 con relé, LED y buzzer para abrir una puerta o señalizar la marcación.</li>
+      <li>Alertas por correo al docente sobre inasistencias o jornadas sin salida.</li>
+      <li>Calibración del umbral con datos de varias semanas del piloto.</li>
+      <li>App móvil o varias sedes (requiere rediseñar la coordinación entre equipos).</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="n">12</span>Viabilidad del proyecto</h2>
+<table>
+  <tbody>
+    <tr><td class="k" style="width:20%">Hardware</td><td>Basta una cámara integrada o una webcam USB. El AS608 y el adaptador USB-TTL son módulos de bajo costo. No se necesita GPU.</td></tr>
+    <tr><td class="k">Herramientas de IA</td><td>Modelos preentrenados abiertos: InsightFace (uso académico, no comercial) y SFace (licencia Apache-2.0). Corren en CPU, sin APIs pagadas ni conexión a internet.</td></tr>
+    <tr><td class="k">Conocimientos</td><td>Python, desarrollo web con React y los fundamentos de visión por computadora y redes neuronales del curso.</td></tr>
+    <tr><td class="k">Tiempo y estado</td><td>El prototipo v1 ya está construido y verificado: <strong>79 pruebas automatizadas</strong> de backend, <strong>30/30 verificaciones de integración</strong> con ambos motores de IA y <strong>6/6 pruebas end-to-end</strong> en navegador. Lo pendiente se limita a los opcionales.</td></tr>
+  </tbody>
+</table>
+<table>
+  <thead><tr><th style="width:30%">Riesgo principal</th><th>Mitigación</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Mala iluminación o cámara de baja calidad</td><td>Control de calidad por imagen, mensajes de guía y umbral calibrable desde el panel.</td></tr>
+    <tr><td class="k">Suplantación con foto o video</td><td>Prueba de vida activa contra fotos; contra videos, anti-spoofing pasivo (opcional).</td></tr>
+    <tr><td class="k">Confusión entre personas parecidas</td><td>Umbral, margen sobre el segundo candidato y consenso 3/5; calibración FAR/FRR.</td></tr>
+    <tr><td class="k">Privacidad de datos biométricos</td><td>Procesamiento local, plantillas cifradas, consentimiento obligatorio, borrado de biometría y fotos visibles solo para el administrador.</td></tr>
+    <tr><td class="k">Lector AS608 aún sin prueba física</td><td>Es opcional: el sistema funciona solo con la cámara, y un simulador cubre la lógica multimodal.</td></tr>
+    <tr><td class="k">Falla del motor de IA</td><td>Respaldo automático a SFace y re-indexado de plantillas desde las fotos de enrolamiento.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">13</span>Impacto esperado</h2>
+<div class="impact">
+  <div class="card"><b>Educativo</b><p>Recupera minutos de cada clase y da una asistencia confiable que el estudiante puede consultar.</p></div>
+  <div class="card"><b>Seguridad</b><p>Evita marcar por otro: cada registro tiene foto, similitud, prueba de vida y auditoría.</p></div>
+  <div class="card"><b>Productividad y automatización</b><p>Calcula jornadas y horas sin transcribir nada y exporta reportes listos para Excel.</p></div>
+  <div class="card"><b>Empresarial</b><p>Sirve para el control de jornada laboral; en el Perú, el <span class="nw">D.S. N.° 004-2006-TR</span> exige registrar la asistencia.</p></div>
+  <div class="card"><b>Privacidad</b><p>Diseño local que aplica los principios de la Ley <span class="nw">N.° 29733</span>: consentimiento, finalidad y seguridad.</p></div>
+  <div class="card"><b>Escalable</b><p>Interfaces intercambiables para sumar huella, anti-spoofing o actuadores sin rehacer el sistema.</p></div>
+</div>
+
+<h3 style="margin-top:9pt">Referencias</h3>
+<ol class="refs">
+  <li>Deng, J., Guo, J., Xue, N. y Zafeiriou, S. (2019). ArcFace: Additive angular margin loss for deep face recognition. <em>Proceedings of IEEE/CVF CVPR</em>, 4690–4699.</li>
+  <li>Guo, J., Deng, J., Lattas, A. y Zafeiriou, S. (2022). Sample and computation redistribution for efficient face detection (SCRFD). <em>International Conference on Learning Representations (ICLR)</em>.</li>
+  <li>Zhong, Y., Deng, W., Hu, J., Zhao, D., Li, X. y Wen, D. (2021). SFace: Sigmoid-constrained hypersphere loss for robust face recognition. <em>IEEE Transactions on Image Processing</em>, 30, 2587–2598.</li>
+  <li>Wu, W., Peng, H. y Yu, S. (2023). YuNet: A tiny millisecond-level face detector. <em>Machine Intelligence Research</em>, 20(5), 656–665.</li>
+  <li>InsightFace: 2D and 3D face analysis project. https://github.com/deepinsight/insightface · OpenCV Zoo. https://github.com/opencv/opencv_zoo</li>
+  <li>ONNX Runtime. https://onnxruntime.ai · FastAPI. https://fastapi.tiangolo.com · React. https://react.dev</li>
+  <li>Congreso de la República del Perú (2011). Ley <span class="nw">N.° 29733</span>, Ley de Protección de Datos Personales.</li>
+  <li>Ministerio de Trabajo y Promoción del Empleo (2006). <span class="nw">D.S. N.° 004-2006-TR</span>, registro de control de asistencia y de salida.</li>
+</ol>
+
+</body>
+</html>

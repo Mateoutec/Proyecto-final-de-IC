@@ -1,0 +1,45 @@
+[project]
+name = "asistencia-biometrica"
+version = "1.0.0"
+description = "Sistema local de control de asistencia con reconocimiento facial y huella opcional"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy>=2.0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "python-multipart>=0.0.9",
+    "numpy>=1.26,<3",
+    "opencv-python-headless>=4.9",
+    "onnxruntime>=1.18",
+    "cryptography>=42",
+    "openpyxl>=3.1",
+    "matplotlib>=3.8",
+    "tzlocal>=5.2",
+    "tzdata>=2024.1",
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+# Lector de huellas AS608 (v2). setup.sh intenta instalarlo; si falla, el sistema funciona sin él.
+fingerprint = ["adafruit-circuitpython-fingerprint>=2.2"]
+
+[dependency-groups]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: pruebas con los motores faciales reales (se saltan si no están disponibles)"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
+ignore = ["E501", "B008", "B904"]

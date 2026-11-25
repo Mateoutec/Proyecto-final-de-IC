@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="760" height="532" viewBox="0 0 760 532" xmlns="http://www.w3.org/2000/svg" font-family="Fira Sans, sans-serif" role="img" aria-label="Diagrama de arquitectura">
+  <rect width="760" height="532" fill="#ffffff"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <!-- etiquetas de capas -->
+  <g font-size="9.5" font-weight="600" fill="#7a8699" letter-spacing="0.6">
+    <text x="12" y="49">PERFILES</text>
+    <text x="12" y="138">HARDWARE</text>
+    <text x="12" y="222">APLICACIÓN</text><text x="12" y="234">WEB</text>
+    <text x="12" y="337">BACKEND</text><text x="12" y="349">Y API</text>
+    <text x="12" y="452">IA Y DATOS</text>
+  </g>
+  <!-- límite del equipo local -->
+  <rect x="108" y="81" width="636" height="437" rx="14" fill="none" stroke="#9aa8bb" stroke-dasharray="6 5"/>
+  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Laptop del aula · servidor solo en 127.0.0.1 · sin nube</text>
+
+  <!-- perfiles -->
+  <rect x="125" y="18" width="293" height="54" rx="10" fill="#0f1e33"/>
+  <text x="271" y="41" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">Usuario</text>
+  <text x="271" y="59" text-anchor="middle" font-size="10" fill="#c9d3e1">estudiante que marca en el kiosco</text>
+  <rect x="431" y="18" width="293" height="54" rx="10" fill="#16325c"/>
+  <text x="577" y="41" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">Administrador</text>
+  <text x="577" y="59" text-anchor="middle" font-size="10" fill="#c9d3e1">docente / RR.HH. en el panel</text>
+
+  <!-- hardware -->
+  <rect x="125" y="104" width="140" height="60" rx="9" fill="#fdf3e7" stroke="#b45309" stroke-width="1.3"/>
+  <text x="195" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#7c3a06">Cámara web</text>
+  <text x="195" y="147" text-anchor="middle" font-size="9.5" fill="#8a5a2b">USB o integrada</text>
+  <rect x="278" y="104" width="140" height="60" rx="9" fill="#fffaf3" stroke="#b45309" stroke-width="1.3" stroke-dasharray="5 3"/>
+  <text x="348" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#7c3a06">Lector de huella</text>
+  <text x="348" y="147" text-anchor="middle" font-size="9.5" fill="#8a5a2b">AS608 · opcional (v2)</text>
+
+  <!-- aplicación web -->
+  <rect x="125" y="196" width="140" height="60" rx="9" fill="#eaf1ff" stroke="#1d4ed8" stroke-width="1.3"/>
+  <text x="195" y="221" text-anchor="middle" font-size="12" font-weight="600" fill="#1e3a8a">Kiosco  /</text>
+  <text x="195" y="239" text-anchor="middle" font-size="9.5" fill="#3b5aa8">React · navegador</text>
+  <rect x="431" y="196" width="293" height="60" rx="9" fill="#eaf1ff" stroke="#1d4ed8" stroke-width="1.3"/>
+  <text x="577" y="221" text-anchor="middle" font-size="12" font-weight="600" fill="#1e3a8a">Panel administrativo  /admin</text>
+  <text x="577" y="239" text-anchor="middle" font-size="9.5" fill="#3b5aa8">8 módulos · sesión con cookie httpOnly</text>
+
+  <!-- backend -->
+  <rect x="116" y="282" width="618" height="104" rx="12" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="430" y="299" font-size="10" font-weight="600" fill="#334155">Backend · FastAPI (Python 3.11)</text>
+  <g font-size="11" font-weight="600" fill="#0f1e33" text-anchor="middle">
+    <rect x="125" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="195" y="334">API del kiosco</text>
+    <rect x="278" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="348" y="334">Máquina de estados</text>
+    <rect x="431" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="501" y="334">Servicios</text>
+    <rect x="584" y="308" width="140" height="64" rx="8" fill="#fff" stroke="#94a3b8"/>
+    <text x="654" y="334">API del panel</text>
+  </g>
+  <g font-size="9.2" fill="#4f5e73" text-anchor="middle">
+    <text x="195" y="352">/api/kiosk</text>
+    <text x="348" y="352">calidad → 3/5 → vida</text>
+    <text x="501" y="352">asistencia · horas</text><text x="501" y="364">exportación · auditoría</text>
+    <text x="654" y="352">/api/admin</text>
+  </g>
+
+  <!-- IA y datos -->
+  <rect x="125" y="418" width="293" height="76" rx="10" fill="#e7f6ef" stroke="#047857" stroke-width="1.6"/>
+  <text x="271" y="441" text-anchor="middle" font-size="12" font-weight="600" fill="#035e44">Modelo de IA · ONNX Runtime (CPU)</text>
+  <text x="271" y="459" text-anchor="middle" font-size="9.5" fill="#1f6b52">SCRFD + ArcFace (512-d) · respaldo YuNet + SFace</text>
+  <text x="271" y="475" text-anchor="middle" font-size="9.5" fill="#1f6b52">índice 1:N en memoria (NumPy) · prueba de vida</text>
+  <rect x="431" y="418" width="293" height="76" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.3"/>
+  <text x="577" y="441" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Base de datos SQLite (WAL) + archivos</text>
+  <text x="577" y="459" text-anchor="middle" font-size="9.5" fill="#475569">personas · plantillas faciales cifradas · marcaciones</text>
+  <text x="577" y="475" text-anchor="middle" font-size="9.5" fill="#475569">auditoría · fotos de evidencia en disco</text>
+
+  <!-- flujos -->
+  <g stroke="#475569" stroke-width="1.4" fill="none">
+    <line x1="195" y1="72" x2="195" y2="102" marker-end="url(#ah)"/>
+    <line x1="348" y1="72" x2="348" y2="102" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+    <line x1="195" y1="164" x2="195" y2="194" marker-end="url(#ah)"/>
+    <line x1="348" y1="164" x2="348" y2="306" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+    <line x1="195" y1="258" x2="195" y2="306" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="654" y1="72" x2="654" y2="194" marker-end="url(#ah)"/>
+    <line x1="654" y1="258" x2="654" y2="306" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="265" y1="340" x2="276" y2="340" marker-end="url(#ah)"/>
+    <line x1="418" y1="340" x2="429" y2="340" marker-end="url(#ah)"/>
+    <line x1="584" y1="340" x2="573" y2="340" marker-end="url(#ah)"/>
+    <line x1="348" y1="374" x2="348" y2="416" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <line x1="501" y1="374" x2="501" y2="416" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  </g>
+  <g font-size="9.3" fill="#334155">
+    <text x="201" y="97">rostro</text>
+    <text x="354" y="97">dedo</text>
+    <text x="201" y="184">video (getUserMedia)</text>
+    <text x="354" y="222">UART</text><text x="354" y="234">57 600 bps</text>
+    <text x="201" y="275">JPEG 640 px · ~5 fps ↓  estado ↑</text>
+    <text x="660" y="138">contraseña</text>
+    <text x="648" y="275" text-anchor="end">JSON · CSV · XLSX · ZIP</text>
+    <text x="342" y="401" text-anchor="end">imagen → identidad, similitud</text>
+    <text x="507" y="401">SQL · fotos</text>
+  </g>
+</svg>

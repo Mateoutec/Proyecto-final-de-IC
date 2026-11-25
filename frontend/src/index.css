@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens semánticos (ver docs/DESIGN.md). Claro = "papel"; oscuro = "tinta marcador". */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --surface-2: #eaeef4;
+  --border: #d3dbe6;
+  --fg: #0f1e33;
+  --muted: #4f5e73;
+  --primary: #1e3a5f;
+  --primary-hover: #17304f;
+  --on-primary: #ffffff;
+  --ring: #2f6fdb;
+  --in: #047857;
+  --in-soft: #d7f5e8;
+  --out: #b45309;
+  --out-soft: #fdf0d5;
+  --info: #1d4ed8;
+  --info-soft: #dde8fd;
+  --danger: #b91c1c;
+  --danger-soft: #fde3e3;
+  --warn: #8a5a00;
+  --warn-soft: #fbf0cc;
+  --rail: #1e3a5f;
+  --rail-fg: #e7edf5;
+  --stage: #0b1626;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0b1626;
+  --surface: #11213a;
+  --surface-2: #182c4a;
+  --border: #284066;
+  --fg: #eef2f7;
+  --muted: #a3b3c9;
+  --primary: #8db8f2;
+  --primary-hover: #a8c9f6;
+  --on-primary: #0b1626;
+  --ring: #8db8f2;
+  --in: #3fd9a2;
+  --in-soft: rgba(63, 217, 162, 0.14);
+  --out: #f7b84b;
+  --out-soft: rgba(247, 184, 75, 0.15);
+  --info: #9cc2ff;
+  --info-soft: rgba(156, 194, 255, 0.14);
+  --danger: #ff8a8a;
+  --danger-soft: rgba(255, 138, 138, 0.14);
+  --warn: #f2cc60;
+  --warn-soft: rgba(242, 204, 96, 0.14);
+  --rail: #0e1c31;
+  --rail-fg: #dbe5f2;
+  --stage: #050c17;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fira Sans Condensed", "Fira Sans", ui-sans-serif, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, "SF Mono", monospace;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-ring: var(--ring);
+  --color-in: var(--in);
+  --color-in-soft: var(--in-soft);
+  --color-out: var(--out);
+  --color-out-soft: var(--out-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-rail: var(--rail);
+  --color-rail-fg: var(--rail-fg);
+  --color-stage: var(--stage);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sello de la tarjeta de marcación: el único gesto animado del producto. */
+@keyframes stamp-in {
+  0% {
+    transform: rotate(-9deg) scale(1.6);
+    opacity: 0;
+  }
+  60% {
+    transform: rotate(-4deg) scale(0.96);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-4deg) scale(1);
+    opacity: 1;
+  }
+}
+.stamp {
+  animation: stamp-in 420ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes drain {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+.drain {
+  transform-origin: left;
+  animation: drain linear forwards;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(110%);
+  }
+}
+.scanline {
+  animation: scan 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes nudge-left {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-14px);
+  }
+}
+@keyframes nudge-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+}
+.nudge-left {
+  animation: nudge-left 900ms ease-in-out infinite;
+}
+.nudge-right {
+  animation: nudge-right 900ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp,
+  .scanline,
+  .nudge-left,
+  .nudge-right {
+    animation: none !important;
+  }
+  .stamp {
+    transform: rotate(-4deg);
+  }
+  * {
+    transition-duration: 0ms !important;
+  }
+}
