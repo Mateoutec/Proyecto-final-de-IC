@@ -1,0 +1,26 @@
+# Despliegue en la nube: app (FastAPI + IA) detrás de Caddy, que obtiene el certificado HTTPS solo.
+# DOMINIO se lee de deploy/nube/.env (p. ej. 3-80-1-2.sslip.io). Secretos en app.env (no versionado).
+services:
+  app:
+    image: asistencia:latest
+    env_file: app.env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMINIO=${DOMINIO}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    restart: unless-stopped
+volumes:
+  caddy_data: {}
+  caddy_config: {}

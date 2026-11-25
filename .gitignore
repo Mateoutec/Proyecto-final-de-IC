@@ -25,3 +25,8 @@ frontend/e2e/fixtures/
 frontend/e2e/screenshots/
 # Skills de terceros usadas durante el desarrollo
 .claude/
+# Despliegue en la nube: secretos y datos del servidor
+deploy/nube/app.env
+deploy/nube/.env
+deploy/nube/data/
+deploy/nube/.estado/
