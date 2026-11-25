@@ -14,7 +14,7 @@
   </g>
   <!-- límite del equipo local -->
   <rect x="108" y="81" width="636" height="437" rx="14" fill="none" stroke="#9aa8bb" stroke-dasharray="6 5"/>
-  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Laptop del aula · servidor solo en 127.0.0.1 · sin nube</text>
+  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Servidor: AWS EC2 · Docker · HTTPS (Caddy) — o laptop local</text>
 
   <!-- perfiles -->
   <rect x="125" y="18" width="293" height="54" rx="10" fill="#0f1e33"/>

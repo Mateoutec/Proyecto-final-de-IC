@@ -18,7 +18,7 @@ git clone --depth 1 https://github.com/Mateoutec/Proyecto-final-de-IC.git /opt/a
 cd /opt/asistencia
 docker build -t asistencia:latest .
 cd deploy/nube
-echo "DOMINIO=${IP//./-}.sslip.io" > .env
+DOMINIO="${IP//./-}.sslip.io"; echo "DOMINIO=$DOMINIO" > .env
 cat > app.env <<ENV
 ADMIN_PASSWORD=__ADMIN_PASSWORD__
 SESSION_SECRET=__SESSION_SECRET__
@@ -27,6 +27,7 @@ TIMEZONE=America/Lima
 FACE_ENGINE=insightface
 LIVENESS_ENABLED=true
 FINGERPRINT_PROVIDER=disabled
+ALLOWED_HOSTS=$DOMINIO
 ENV
 chmod 600 app.env
 mkdir -p data

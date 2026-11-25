@@ -121,7 +121,7 @@ figcaption b{color:var(--ink);font-weight:600}
   <div class="band">
     <div class="course">Introducción a Cognitive Computing · EL3302 · Proyecto final</div>
     <h1>Asistencia Biométrica</h1>
-    <p class="sub">Kiosco web de entrada y salida con reconocimiento facial, prueba de vida y panel administrativo. Toda la inteligencia artificial corre en la propia laptop.</p>
+    <p class="sub">Kiosco web de entrada y salida con reconocimiento facial, prueba de vida y panel administrativo, desplegado en la nube (AWS). La IA corre en nuestro propio servidor, sin APIs de terceros.</p>
     <div class="pills">
       <span class="pill"><i style="background:#60a5fa"></i>Aplicación web</span>
       <span class="pill"><i style="background:#f59e0b"></i>Hardware: cámara + lector de huella</span>
@@ -134,12 +134,12 @@ figcaption b{color:var(--ink);font-weight:600}
     <div><h4>Docente</h4><p>Jaime Farfán Madariaga</p></div>
     <div><h4>Lugar y fecha</h4><p>Lima, 24 de noviembre de 2026</p></div>
   </div>
-  <div class="repo">Código fuente: <span>github.com/Mateoutec/Proyecto-final-de-IC</span></div>
+  <div class="repo">Aplicación en la nube: <span>https://54-221-47-156.sslip.io</span> · Repositorio: <span>github.com/Mateoutec/Proyecto-final-de-IC</span></div>
 </section>
 
 <!-- =================================== RESUMEN =================================== -->
 <div class="summary">
-  <p class="lead"><strong>Resumen.</strong> Proponemos y presentamos funcionando un sistema de control de asistencia para clases y laboratorios. El estudiante se acerca a un kiosco web, una cámara captura su rostro, un modelo de IA lo identifica y le pide un giro de cabeza para confirmar que es una persona real, y el sistema registra su ENTRADA o SALIDA. El docente gestiona personas, horas y reportes desde un panel web. El procesamiento es local: las imágenes y los datos biométricos no salen del equipo.</p>
+  <p class="lead"><strong>Resumen.</strong> Proponemos y presentamos funcionando un sistema de control de asistencia para clases y laboratorios. El estudiante se acerca a un kiosco web, una cámara captura su rostro, un modelo de IA lo identifica y le pide un giro de cabeza para confirmar que es una persona real, y el sistema registra su ENTRADA o SALIDA. El docente gestiona personas, horas y reportes desde un panel web. La aplicación está desplegada en la nube (AWS EC2 con Docker y HTTPS) en <code>https://54-221-47-156.sslip.io</code>. El modelo de IA corre en nuestro propio servidor, así que los rostros no se envían a servicios de terceros. También puede ejecutarse 100 % en local.</p>
 </div>
 
 <table class="avoid">
@@ -151,6 +151,8 @@ figcaption b{color:var(--ink);font-weight:600}
     <tr><td class="k">Conexión a hardware</td><td>Cámara web (≈5 imágenes/s por HTTP local) y lector de huella AS608 por puerto serie UART como segundo sensor.</td><td>7</td></tr>
     <tr><td class="k">Inteligencia Artificial</td><td>Detección y reconocimiento facial con redes neuronales (SCRFD + ArcFace), identificación 1:N con consenso y prueba de vida.</td><td>8</td></tr>
     <tr><td class="k">Arquitectura inicial</td><td>Diagrama de perfiles, aplicación, backend, base de datos, hardware y modelo de IA.</td><td>9</td></tr>
+    <tr><td class="k">Despliegue en la nube</td><td>AWS EC2 + Docker + Caddy (HTTPS): <code>https://54-221-47-156.sslip.io</code>.</td><td>10</td></tr>
+    <tr><td class="k">Repositorio</td><td><code>https://github.com/Mateoutec/Proyecto-final-de-IC</code> (código, informe y scripts de despliegue).</td><td>10</td></tr>
   </tbody>
 </table>
 
@@ -187,7 +189,7 @@ figcaption b{color:var(--ink);font-weight:600}
 <ul>
   <li>Frente a la lista o la hoja de firmas, nadie puede marcar por otro y los reportes se generan solos.</li>
   <li>Frente a tarjetas RFID o códigos QR, la credencial es el propio rostro: no se presta ni se olvida.</li>
-  <li>Frente a los relojes biométricos en la nube, el procesamiento es 100 % local y no hay costo de suscripción. Además, incluye una prueba de vida que rechaza fotos estáticas.</li>
+  <li>Frente a los relojes biométricos comerciales, el reconocimiento corre en nuestro propio servidor: no se envían rostros a terceros y no hay costo de suscripción. Además, incluye una prueba de vida que rechaza fotos estáticas.</li>
 </ul>
 
 <h2><span class="n">5</span>Perfiles del sistema</h2>
@@ -216,7 +218,7 @@ figcaption b{color:var(--ink);font-weight:600}
 </div>
 
 <h2><span class="n">6</span>Aplicación web</h2>
-<p><strong>Tipo: aplicación web</strong> de una sola página (React) que sirve el propio backend en <code>http://localhost:8000</code>. Funciona sin internet y se adapta a la pantalla (verificado sin desplazamiento horizontal a 390 px). Tiene dos entradas, una por perfil: el <strong>kiosco</strong> (<code>/</code>), para usuarios, y el <strong>panel</strong> (<code>/admin</code>), para el administrador.</p>
+<p><strong>Tipo: aplicación web</strong> de una sola página (React) que sirve el propio backend. Está publicada en <code>https://54-221-47-156.sslip.io</code> y también funciona en local, sin internet. Se adapta a la pantalla (verificado sin desplazamiento horizontal a 390 px). Tiene dos entradas, una por perfil: el <strong>kiosco</strong> (<code>/</code>), para usuarios, y el <strong>panel</strong> (<code>/admin</code>), para el administrador.</p>
 <table>
   <thead><tr><th style="width:24%">Pantalla o módulo</th><th style="width:11%">Perfil</th><th>Qué permite</th></tr></thead>
   <tbody>
@@ -250,7 +252,7 @@ figcaption b{color:var(--ink);font-weight:600}
       <td class="kw">Cámara web<br><span class="tag ok">operativa</span></td>
       <td>Sensor principal: captura el rostro para identificar y para la prueba de vida.</td>
       <td>Imágenes JPEG de 640 px de ancho. Por cada marcación solo se guarda la mejor captura frontal, como evidencia.</td>
-      <td>USB o integrada. El navegador abre la cámara (<code>getUserMedia</code>) y envía cada imagen por HTTP POST al backend local (<code>127.0.0.1:8000</code>).</td>
+      <td>USB o integrada. El navegador abre la cámara (<code>getUserMedia</code>) y envía cada imagen por HTTPS (nube) o HTTP local al backend.</td>
       <td>≈5 imágenes/s (una cada 200 ms) mientras el kiosco está abierto.</td>
     </tr>
     <tr>
@@ -265,7 +267,7 @@ figcaption b{color:var(--ink);font-weight:600}
 <p><strong>Integración multimodal.</strong> Si la huella coincide con puntaje alto, se marca por huella. Con puntaje medio, esa persona pasa a ser candidata y se verifica su rostro 1:1 más la prueba de vida. Sin coincidencia, se usa el rostro 1:N. Cada marcación guarda el método (ROSTRO, HUELLA, HUELLA+ROSTRO, CÓDIGO+ROSTRO o MANUAL) y sus puntajes. <span class="muted">Estado actual: la cámara está integrada y probada. El adaptador del AS608 y la lógica multimodal ya están implementados y se verificaron con un simulador; falta probarlos con el sensor físico.</span></p>
 
 <h2><span class="n">8</span>Uso de Inteligencia Artificial</h2>
-<p>La IA es el núcleo del sistema: sin ella no hay identificación. Es <strong>visión por computadora con aprendizaje profundo</strong> y corre en CPU con ONNX Runtime, sin GPU, sin internet y sin APIs pagadas.</p>
+<p>La IA es el núcleo del sistema: sin ella no hay identificación. Es <strong>visión por computadora con aprendizaje profundo</strong> y corre en CPU con ONNX Runtime dentro de nuestro servidor, sin GPU y sin APIs pagadas.</p>
 <div class="chain">
   <span class="io">Imagen 640 px</span><em>→</em><span>Control de calidad</span><em>→</em><span>Detección SCRFD + 5 puntos faciales</span><em>→</em><span>Alineación 112×112</span><em>→</em><span>ArcFace: vector de 512 dimensiones</span><em>→</em><span>Similitud coseno 1:N</span><em>→</em><span>Consenso 3 de 5</span><em>→</em><span>Prueba de vida (giro)</span><em>→</em><span class="io">Marcación</span>
 </div>
@@ -286,7 +288,7 @@ figcaption b{color:var(--ink);font-weight:600}
   <figcaption><b>Figura 2.</b> Izquierda: el reto de prueba de vida pide un giro de cabeza aleatorio; una foto estática no lo supera (verificado en las pruebas end-to-end). Derecha: el administrador ajusta los umbrales de similitud, el consenso y la prueba de vida.</figcaption>
 </figure>
 
-<h2 class="page-break"><span class="n">9</span>Arquitectura inicial de la solución</h2>
+<h2><span class="n">9</span>Arquitectura inicial de la solución</h2>
 <div class="diagram avoid">
 <svg viewBox="0 0 760 532" xmlns="http://www.w3.org/2000/svg" font-family="Fira Sans, sans-serif" role="img" aria-label="Diagrama de arquitectura">
   <defs>
@@ -302,7 +304,7 @@ figcaption b{color:var(--ink);font-weight:600}
   </g>
   <!-- límite del equipo local -->
   <rect x="108" y="81" width="636" height="437" rx="14" fill="none" stroke="#9aa8bb" stroke-dasharray="6 5"/>
-  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Laptop del aula · servidor solo en 127.0.0.1 · sin nube</text>
+  <text x="732" y="511" text-anchor="end" font-size="10" fill="#6b778a">Servidor: AWS EC2 · Docker · HTTPS (Caddy) — o laptop local</text>
 
   <!-- perfiles -->
   <rect x="125" y="18" width="293" height="54" rx="10" fill="#0f1e33"/>
@@ -402,7 +404,9 @@ figcaption b{color:var(--ink);font-weight:600}
     <tr><td class="k">Hardware</td><td>Cámara web USB o integrada (también sirve un smartphone como cámara virtual), lector AS608 con adaptador USB-TTL, <code>pyserial</code> y <code>adafruit-circuitpython-fingerprint</code>.</td></tr>
     <tr><td class="k">IA</td><td>InsightFace <em>buffalo_l</em> (SCRFD-10GF + ArcFace ResNet-50) sobre ONNX Runtime; OpenCV YuNet + SFace (respaldo); NumPy y OpenCV para la calidad de imagen y la prueba de vida.</td></tr>
     <tr><td class="k">Seguridad</td><td>Cifrado Fernet de las plantillas, servidor solo en loopback, sesión con cookie httpOnly y fotos servidas solo a administradores.</td></tr>
-    <tr><td class="k">Calidad y despliegue</td><td>pytest, Ruff, ESLint y Playwright (pruebas end-to-end con cámara simulada). Despliegue local en una laptop Windows o macOS, sin nube por decisión de privacidad.</td></tr>
+    <tr><td class="k">Nube y despliegue</td><td>AWS EC2 (Amazon Linux 2023) con Docker Compose: contenedor de la app y Caddy como proxy con certificado HTTPS automático, que el navegador exige para usar la cámara. URL: <code>https://54-221-47-156.sslip.io</code>. También se puede ejecutar en local.</td></tr>
+    <tr><td class="k">Calidad</td><td>pytest, Ruff, ESLint y Playwright (pruebas end-to-end con cámara simulada).</td></tr>
+    <tr><td class="k">Repositorio</td><td><code>https://github.com/Mateoutec/Proyecto-final-de-IC</code></td></tr>
   </tbody>
 </table>
 
@@ -448,7 +452,7 @@ figcaption b{color:var(--ink);font-weight:600}
     <tr><td class="k">Mala iluminación o cámara de baja calidad</td><td>Control de calidad por imagen, mensajes de guía y umbral calibrable desde el panel.</td></tr>
     <tr><td class="k">Suplantación con foto o video</td><td>Prueba de vida activa contra fotos; contra videos, anti-spoofing pasivo (opcional).</td></tr>
     <tr><td class="k">Confusión entre personas parecidas</td><td>Umbral, margen sobre el segundo candidato y consenso 3/5; calibración FAR/FRR.</td></tr>
-    <tr><td class="k">Privacidad de datos biométricos</td><td>Procesamiento local, plantillas cifradas, consentimiento obligatorio, borrado de biometría y fotos visibles solo para el administrador.</td></tr>
+    <tr><td class="k">Privacidad de datos biométricos</td><td>Procesamiento en servidor propio (sin terceros), HTTPS, plantillas cifradas, consentimiento obligatorio, borrado de biometría y fotos visibles solo para el administrador.</td></tr>
     <tr><td class="k">Lector AS608 aún sin prueba física</td><td>Es opcional: el sistema funciona solo con la cámara, y un simulador cubre la lógica multimodal.</td></tr>
     <tr><td class="k">Falla del motor de IA</td><td>Respaldo automático a SFace y re-indexado de plantillas desde las fotos de enrolamiento.</td></tr>
   </tbody>
@@ -460,7 +464,7 @@ figcaption b{color:var(--ink);font-weight:600}
   <div class="card"><b>Seguridad</b><p>Evita marcar por otro: cada registro tiene foto, similitud, prueba de vida y auditoría.</p></div>
   <div class="card"><b>Productividad y automatización</b><p>Calcula jornadas y horas sin transcribir nada y exporta reportes listos para Excel.</p></div>
   <div class="card"><b>Empresarial</b><p>Sirve para el control de jornada laboral; en el Perú, el <span class="nw">D.S. N.° 004-2006-TR</span> exige registrar la asistencia.</p></div>
-  <div class="card"><b>Privacidad</b><p>Diseño local que aplica los principios de la Ley <span class="nw">N.° 29733</span>: consentimiento, finalidad y seguridad.</p></div>
+  <div class="card"><b>Privacidad</b><p>Servidor propio, HTTPS y cifrado, con los principios de la Ley <span class="nw">N.° 29733</span>: consentimiento, finalidad y seguridad.</p></div>
   <div class="card"><b>Escalable</b><p>Interfaces intercambiables para sumar huella, anti-spoofing o actuadores sin rehacer el sistema.</p></div>
 </div>
 

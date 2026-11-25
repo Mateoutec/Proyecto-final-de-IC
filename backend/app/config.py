@@ -40,6 +40,8 @@ class Settings(BaseSettings):
     session_secret: str = ""
     encryption_key: str = ""
     admin_session_hours: int = 12
+    # Dominios extra aceptados (despliegue en la nube detrás de HTTPS), separados por coma
+    allowed_hosts: str = ""
 
     # Zona horaria para mostrar fechas (vacío = la del sistema)
     timezone: str = ""

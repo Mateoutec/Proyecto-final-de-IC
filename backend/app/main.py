@@ -45,7 +45,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ctx.close()
 
     app = FastAPI(title="Asistencia Biométrica", version=__version__, lifespan=lifespan)
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "testserver"])
+    extra_hosts = [h.strip() for h in settings.allowed_hosts.split(",") if h.strip()]
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "testserver", *extra_hosts])
     install_error_handlers(app)
 
     @app.middleware("http")
